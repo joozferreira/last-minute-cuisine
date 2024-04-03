@@ -46,3 +46,7 @@ _Skills Tested_
 - Utilizing arrays to store lists of ingredients and recipes.
 - Implementing if-else structures to control program flow based on conditions.
 - Using loops to iterate over arrays and objects to perform tasks such as matching ingredients and displaying results.
+
+_Resources_
+
+- Logo created using Hatchful, converted from PNG to SVG using Adobe Express (https://new.express.adobe.com/tools/convert-to-svg)
