@@ -5,6 +5,7 @@ Intermediate JS project to test skills. Project idea from ChatGPT:
 Project: Recipe Recommender
 
 _Description_
+
 Create a web application that recommends recipes based on user input for ingredients they have on hand. The application should allow users to input the ingredients they have available, and then suggest recipes that can be made using those ingredients.
 
 _Main Features_
