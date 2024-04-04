@@ -51,3 +51,4 @@ _Skills Tested_
 _Resources_
 
 - Logo created using Hatchful, converted from PNG to SVG using Adobe Express (https://new.express.adobe.com/tools/convert-to-svg)
+- Font Ubuntu from Google Fonts (https://fonts.google.com/specimen/Ubuntu)
