@@ -298,7 +298,6 @@ const test = {
 
 const randomImg = document.getElementById("random-img");
 const randomName = document.getElementById("random-name");
-const randomType = document.getElementById("random-type");
 const randomDescription = document.getElementById("random-description");
 
 async function randomRecipe() {
@@ -312,8 +311,7 @@ async function randomRecipe() {
 
   randomImg.setAttribute("src", recipes[0].image);
   randomName.textContent = `${recipes[0].title}`;
-  randomType.textContent = `${recipes[0].cuisines}`;
-  randomDescription.innerHTML = `${recipes[0].summary}`;
+  randomDescription.innerHTML += `${recipes[0].summary}`;
 }
 
 randomRecipe();
