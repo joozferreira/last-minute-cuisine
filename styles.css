@@ -15,7 +15,7 @@ nav {
   margin: 0;
   display: flex;
   align-items: center;
-  padding: 10px 150px;
+  padding: 0.625rem 15rem;
   background-color: #242124;
   color: #f7f4ef;
 }
@@ -33,11 +33,11 @@ ul {
 .nav-link {
   height: 2em;
   padding: 5px;
+}
 
-  *:hover,
-  *:focus {
-    animation: underline 0.5s linear 0s 1 normal forwards;
-  }
+.nav-link:hover,
+.nav-link:focus {
+  animation: underline 0.5s linear 0s 1 normal forwards;
 }
 
 @keyframes underline {
@@ -47,4 +47,41 @@ ul {
   to {
     border-bottom: 2px solid #f7f4ef;
   }
+}
+
+main {
+  padding: 3rem 15rem;
+}
+
+.random-recipe {
+  border: 5px solid #242124;
+  padding: 1em;
+  border-radius: 10px;
+  background-color: #dbe4e2;
+}
+
+.random-content {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+#random-img {
+  float: inline-start;
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+}
+
+#random-details p {
+  margin-top: 10px;
+  text-align: justify;
+  line-height: 1.3em;
+  font-size: 0.9rem;
+  color: #242124;
+}
+
+#random-details p a {
+  text-decoration-style: dashed;
+  color: #242124;
 }
