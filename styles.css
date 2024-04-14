@@ -81,3 +81,17 @@ main {
   width: 100%;
   border-radius: 10px;
 }
+
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 250ms grid-template-rows ease;
+}
+
+.accordion:hover .accordion-body {
+  grid-template-rows: 1fr;
+}
+
+.accordion-body > div {
+  overflow: hidden;
+}
