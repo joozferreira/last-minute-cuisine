@@ -60,24 +60,24 @@ main {
   padding: 1em;
   border-radius: 10px;
   background-color: #fff;
-  max-width: 45rem;
+  max-width: 20rem;
 }
 
-.random-content p {
-  margin-top: 1.5rem;
+.random-content h3 {
+  width: 100%;
   text-align: justify;
   line-height: 1.3em;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: #242124;
+  border-bottom: 1px solid #5c545c;
+  padding: 1rem;
+}
+
+.random-content h3 span {
+  float: right;
 }
 
 #random-img {
-  float: left;
-  width: 40%;
+  width: 100%;
   border-radius: 10px;
-}
-
-.random-content p a {
-  text-decoration-style: dashed;
-  color: #242124;
 }
