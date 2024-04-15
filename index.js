@@ -321,8 +321,34 @@ async function randomRecipe() {
 
   const recipes = test.recipes;
 
+  const ingredientsList = new Map();
+  const stepsList = new Set();
+
+  recipes[0].extendedIngredients.forEach((ingredient) => {
+    ingredientsList.set(
+      ingredient.nameClean,
+      ingredient.measures.metric.amount + ingredient.measures.metric.unitShort
+    );
+  });
+
+  recipes[0].analyzedInstructions[0].steps.forEach((step) => {
+    stepsList.add(step.step);
+  });
+
   randomImg.setAttribute("src", recipes[0].image);
   randomName.textContent = `${recipes[0].title}`;
+
+  for (const ingredient of ingredientsList) {
+    const li = document.createElement("li");
+    li.textContent = `${ingredient[0]} | ${ingredient[1]}`;
+    randomIngredients.appendChild(li);
+  }
+
+  for (step of stepsList) {
+    const li = document.createElement("li");
+    li.textContent = `${step}`;
+    randomSteps.appendChild(li);
+  }
 }
 
 randomRecipe();
