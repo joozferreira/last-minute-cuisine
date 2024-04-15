@@ -11,6 +11,7 @@ body {
   font-size: 16px;
 }
 
+/* Styling of navbar */
 nav {
   margin: 0;
   display: flex;
@@ -50,11 +51,13 @@ ul {
   }
 }
 
+/* Styling of main section of the page */
 main {
   padding: 3rem 15rem;
   background-color: #242124;
 }
 
+/* Styling of random recipe card */
 .random-recipe {
   border: 5px solid #5c545c;
   padding: 1em;
