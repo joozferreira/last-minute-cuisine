@@ -66,6 +66,10 @@ main {
   max-width: 20rem;
 }
 
+.random-recipe h2 {
+  margin: 0 0.5rem 0.5rem 0.75rem;
+}
+
 .random-content h3 {
   width: 100%;
   text-align: justify;
