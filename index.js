@@ -313,11 +313,11 @@ const randomIngredients = document.getElementById("random-ingredients");
 const randomSteps = document.getElementById("random-steps");
 
 async function randomRecipe() {
-  /*const response = await fetch(
-    "https://api.spoonacular.com/recipes/random?number=1&apiKey=054a77294b57404ebabaf53116dd17b1"
-  );
-  const details = await response.json();
-  const recipes = details.recipes;*/
+  // const response = await fetch(
+  //   "https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}"
+  // );
+  // const details = await response.json();
+  // const recipes = details.recipes;
 
   const recipes = test.recipes;
 
