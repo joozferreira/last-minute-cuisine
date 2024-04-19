@@ -9,6 +9,7 @@ body {
   font-weight: 300;
   font-style: normal;
   font-size: 16px;
+  color: #f7f4ef;
 }
 
 /* Styling of navbar */
@@ -16,7 +17,7 @@ nav {
   margin: 0;
   display: flex;
   align-items: center;
-  padding: 0.625rem 15rem;
+  padding: 0.625rem 15%;
   background-color: #242124;
   color: #f7f4ef;
   border-bottom: 2px solid #5c545c;
@@ -53,7 +54,9 @@ ul {
 
 /* Styling of main section of the page */
 main {
-  padding: 3rem 15rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 15%;
   background-color: #242124;
 }
 
@@ -63,11 +66,13 @@ main {
   padding: 1em;
   border-radius: 10px;
   background-color: #fff;
+  min-width: 13rem;
   max-width: 20rem;
 }
 
 .random-recipe h2 {
   margin: 0 0.5rem 0.5rem 0.75rem;
+  color: #242124;
 }
 
 .random-content h3 {
@@ -106,6 +111,7 @@ main {
 #random-ingredients li,
 #random-steps li {
   margin: 0.5rem 2rem;
+  color: #242124;
 }
 
 /* Footer Styling */
@@ -121,4 +127,32 @@ footer h3 {
 
 footer h3 a {
   color: #f7f4ef;
+}
+
+/* Styling of form */
+form {
+  width: 100%;
+  max-width: 48rem;
+}
+
+fieldset {
+  border: 5px solid #5c545c;
+  border-radius: 10px;
+}
+
+legend {
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  font-weight: 700;
+}
+
+#checkboxes {
+  padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
 }
