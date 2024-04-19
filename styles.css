@@ -4,7 +4,14 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100dvh;
+}
+
 body {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
   font-family: "Ubuntu", sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -54,7 +61,9 @@ ul {
 
 /* Styling of main section of the page */
 main {
+  flex-grow: 1;
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 3rem 15%;
   background-color: #242124;
@@ -115,6 +124,10 @@ main {
 }
 
 /* Footer Styling */
+footer {
+  margin-top: auto;
+}
+
 footer h3 {
   font-size: 0.8rem;
   height: 3rem;
@@ -164,4 +177,14 @@ legend {
 input[type="checkbox"],
 input[type="radio"] {
   margin-right: 0.5rem;
+}
+
+#nr-ingredients,
+#time-to-cook {
+  padding: 1rem 1.5rem;
+}
+
+#nr-ingredients label,
+#time-to-cook label {
+  margin-right: 1rem;
 }
