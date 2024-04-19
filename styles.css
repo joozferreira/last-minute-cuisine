@@ -131,10 +131,9 @@ footer h3 a {
 
 /* Styling of form */
 form {
-  width: 100%;
+  flex-grow: 1;
   max-width: 48rem;
 }
-
 fieldset {
   border: 5px solid #5c545c;
   border-radius: 10px;
@@ -146,13 +145,23 @@ legend {
   font-weight: 700;
 }
 
-#checkboxes {
+.form-heading {
+  padding: 0.5rem 1.5rem;
+}
+
+#cuisines,
+#diet {
   padding: 1rem 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 2rem;
 }
 
-input[type="checkbox"] {
+#cuisines,
+#diet {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+input[type="checkbox"],
+input[type="radio"] {
   margin-right: 0.5rem;
 }

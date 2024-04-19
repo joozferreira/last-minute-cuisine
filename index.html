@@ -47,8 +47,9 @@
       <form>
         <fieldset>
           <legend>Your search:</legend>
-          <div id="checkboxes">
-            <div class="option">
+          <h3 class="form-heading">Cuisine</h3>
+          <div id="cuisines">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="japanese"
@@ -56,7 +57,7 @@
                 value="japanese"
               /><label for="japanese">Japanese</label>
             </div>
-            <div class="option">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="italian"
@@ -64,7 +65,7 @@
                 value="italian"
               /><label for="italian">Italian</label>
             </div>
-            <div class="option">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="chinese"
@@ -72,13 +73,7 @@
                 value="chinese"
               /><label for="chinese">Chinese</label>
             </div>
-            <div class="option">
-              <input type="checkbox" id="thai" name="thai" value="thai" /><label
-                for="thai"
-                >Thai</label
-              >
-            </div>
-            <div class="option">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="mediterranean"
@@ -86,7 +81,7 @@
                 value="mediterranean"
               /><label for="mediterranean">Mediterranean</label>
             </div>
-            <div class="option">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="latin-american"
@@ -94,7 +89,7 @@
                 value="Latin American"
               /><label for="latin-american">Latin American</label>
             </div>
-            <div class="option">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="mexican"
@@ -102,7 +97,7 @@
                 value="mexican"
               /><label for="mexican">Mexican</label>
             </div>
-            <div class="option">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="korean"
@@ -110,13 +105,66 @@
                 value="korean"
               /><label for="korean">Korean</label>
             </div>
-            <div class="option">
+            <div class="cuisine-option">
               <input
                 type="checkbox"
                 id="french"
                 name="french"
                 value="french"
               /><label for="french">French</label>
+            </div>
+            <div class="cuisine-option">
+              <input
+                type="checkbox"
+                id="other"
+                name="other"
+                value="other"
+              /><label for="other">Other</label>
+            </div>
+          </div>
+          <h3 class="form-heading">Diet</h3>
+          <div id="diet">
+            <div class="diet-option">
+              <input type="radio" name="paleo" id="paleo" value="paleo" /><label
+                for="paleo"
+                >Paleo</label
+              >
+            </div>
+            <div class="diet-option">
+              <input
+                type="radio"
+                name="vegetarian"
+                id="vegetarian"
+                value="vegetarian"
+              /><label for="vegetarian">Vegetarian</label>
+            </div>
+            <div class="diet-option">
+              <input type="radio" name="vegan" id="vegan" value="vegan" /><label
+                for="vegan"
+                >Vegan</label
+              >
+            </div>
+            <div class="diet-option">
+              <input
+                type="radio"
+                name="gluten-free"
+                id="gluten-free"
+                value="gluten free"
+              /><label for="gluten-free">Gluten Free</label>
+            </div>
+            <div class="diet-option">
+              <input
+                type="radio"
+                name="pescetarian"
+                id="pescetarian"
+                value="pescetarian"
+              /><label for="pescetarian">Pescetarian</label>
+            </div>
+            <div class="diet-option">
+              <input type="radio" name="none" id="none" value="none" /><label
+                for="none"
+                >None</label
+              >
             </div>
           </div>
         </fieldset>
