@@ -201,6 +201,7 @@ input[type="radio"] {
   margin: 0.5rem auto;
   background-color: #119da4;
   color: #f7f4ef;
+  font-weight: bold;
 }
 
 #submit-btn,
