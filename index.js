@@ -9,6 +9,11 @@ https://api.spoonacular.com/recipes/716429/information?includeNutrition=false&ad
 5. For each recipe opened, run https://api.spoonacular.com/recipes/{id}/analyzedInstructions
 */
 
+/* Logic 2:
+Store criteria from user in an object and retrieve recipes for the current query.
+Return results in a modal window.
+*/
+
 // async function getRecipes() {
 //   const response = await fetch(
 //     "https://api.spoonacular.com/recipes/1182871/analyzedInstructions?apiKey=054a77294b57404ebabaf53116dd17b1"
@@ -311,6 +316,8 @@ const randomImg = document.getElementById("random-img");
 const randomName = document.getElementById("random-name");
 const randomIngredients = document.getElementById("random-ingredients");
 const randomSteps = document.getElementById("random-steps");
+const randomClock = document.getElementById("random-clock");
+const randomTime = document.getElementById("random-time");
 
 async function randomRecipe() {
   // const response = await fetch(
@@ -349,6 +356,13 @@ async function randomRecipe() {
     li.textContent = `${step}`;
     randomSteps.appendChild(li);
   }
+
+  if (recipes[0].readyInMinutes <= 15) {
+    randomClock.setAttribute("src", "./assets/clock-lines-svgrepo-com.svg");
+  } else {
+    randomClock.setAttribute("src", "./assets/clock-twelve-svgrepo-com.svg");
+  }
+  randomTime.textContent = `${recipes[0].readyInMinutes}'`;
 }
 
 randomRecipe();

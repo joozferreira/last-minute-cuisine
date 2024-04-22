@@ -1,3 +1,12 @@
+/*
+Colors:
+- #F7F4EF
+- #119DA4
+- #0C7489
+- #5C545C
+- #242124
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -78,6 +87,15 @@ main {
   background-color: #fff;
   min-width: 13rem;
   max-width: 20rem;
+}
+
+#random-header {
+  color: #242124;
+  display: flex;
+}
+
+#random-clock {
+  height: 1.5rem;
 }
 
 .random-recipe h2 {
@@ -202,6 +220,12 @@ input[type="radio"] {
   background-color: #119da4;
   color: #f7f4ef;
   font-weight: bold;
+}
+
+#submit-btn:hover,
+#submit-btn:focus {
+  scale: 1.2;
+  background-color: #0c7489;
 }
 
 #submit-btn,
