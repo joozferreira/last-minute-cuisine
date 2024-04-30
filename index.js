@@ -26,7 +26,7 @@ Return results in a modal window.
 
 async function randomRecipe() {
   const response = await fetch(
-    "https://api.spoonacular.com/recipes/random?number=1&apiKey=062d0b6275e845ae92f513f5701faccf"
+    "https://api.spoonacular.com/recipes/random?number=1&apiKey=${APIKEY}"
   );
   const details = await response.json();
 
