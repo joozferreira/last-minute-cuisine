@@ -89,12 +89,12 @@ main {
   max-width: 20rem;
 }
 
-#random-header {
+.header {
   color: #242124;
   display: flex;
 }
 
-#random-clock {
+.clock {
   height: 1.5rem;
 }
 
@@ -117,7 +117,7 @@ main {
   float: right;
 }
 
-#random-img {
+.img {
   width: 100%;
   border-radius: 10px;
 }
@@ -136,8 +136,8 @@ main {
   overflow: hidden;
 }
 
-#random-ingredients li,
-#random-steps li {
+.ingredients li,
+.steps li {
   margin: 0.5rem 2rem;
   color: #242124;
 }
