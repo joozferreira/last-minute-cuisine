@@ -209,6 +209,34 @@
         >.
       </h3>
     </footer>
+    <template id="recipe-template">
+      <div class="header">
+        <h2 class="name"></h2>
+        <div class="timer">
+          <img src="" alt="clock" class="clock" />
+          <h3 class="time"></h3>
+        </div>
+      </div>
+      <div class="content">
+        <img src="" alt="" class="img" />
+        <div class="accordion">
+          <h3>Ingredients <span>+</span></h3>
+          <div class="accordion-body">
+            <div>
+              <ul class="ingredients"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <h3>Steps <span>+</span></h3>
+          <div class="accordion-body">
+            <div>
+              <ol class="steps"></ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
     <script src="./index.js"></script>
   </body>
 </html>
