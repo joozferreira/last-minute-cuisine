@@ -26,7 +26,7 @@ Return results in a modal window.
 
 async function randomRecipe() {
   const response = await fetch(
-    "https://api.spoonacular.com/recipes/random?number=1&apiKey=${APIKEY}"
+    "https://api.spoonacular.com/recipes/random?number=1&apiKey=062d0b6275e845ae92f513f5701faccf"
   );
   const details = await response.json();
 
@@ -38,10 +38,10 @@ async function randomRecipe() {
     stepsList: details.recipes[0].analyzedInstructions[0].steps,
   };
 
-  createRecipeCard(recipeDetails);
+  createRecipeCard(recipeDetails, "random");
 }
 
-function createRecipeCard(recipe) {
+function createRecipeCard(recipe, location) {
   if ("content" in document.createElement("template")) {
     const template = document.getElementById("recipe-template");
     const clone = template.content.cloneNode(true);
@@ -68,7 +68,9 @@ function createRecipeCard(recipe) {
       clone.querySelectorAll(".steps")[0].appendChild(li);
     });
 
-    document.querySelectorAll(".random-recipe")[0].appendChild(clone);
+    if (location === "random") {
+      document.getElementsByClassName("random-recipe")[0].appendChild(clone);
+    }
   }
 }
 
