@@ -103,7 +103,7 @@ main {
   color: #242124;
 }
 
-.random-content h3 {
+.accordion h3 {
   width: 100%;
   text-align: justify;
   line-height: 1.3em;
@@ -113,7 +113,7 @@ main {
   padding: 1rem;
 }
 
-.random-content h3 span {
+.accordion h3 span {
   float: right;
 }
 
