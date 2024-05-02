@@ -250,7 +250,7 @@ input[type="radio"] {
 
 #submit-btn:hover,
 #submit-btn:focus {
-  scale: 1.2;
+  scale: 1.1;
   background-color: #0c7489;
 }
 
