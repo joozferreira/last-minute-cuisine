@@ -68,6 +68,30 @@ ul {
   }
 }
 
+.burger {
+  display: none;
+}
+
+.top,
+.middle,
+.bottom {
+  width: 1.2rem;
+  height: 0.1rem;
+  background-color: #f7f4ef;
+  margin: 0.3rem;
+}
+
+@media screen and (max-width: 600px) {
+  .nav-links {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+    margin-left: auto;
+  }
+}
+
 /* Styling of main section of the page */
 main {
   flex-grow: 1;
