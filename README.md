@@ -54,3 +54,11 @@ _Resources_
 - Converted from PNG to SVG using Adobe Express (https://new.express.adobe.com/tools/convert-to-svg)
 - Font Ubuntu from Google Fonts (https://fonts.google.com/specimen/Ubuntu)
 - Recipes API: Spoonacular (https://spoonacular.com/)
+
+_Next Steps_
+
+1. Form valdidation and API request with form details
+2. Creation of modal for results
+3. Addition of firebase to control daily random recipe
+4. Login to store favourite recipes per user
+5. Add ingredient-based search
