@@ -62,3 +62,4 @@ _Next Steps_
 3. Addition of firebase to control daily random recipe
 4. Login to store favourite recipes per user
 5. Add ingredient-based search
+6. Add translate option using API
