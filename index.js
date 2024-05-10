@@ -18,23 +18,23 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
-onValue(randomRecipeInDB, function (snapshot) {
-  if (snapshot.exists()) {
-    const recipeArr = Object.entries(snapshot.val());
-    console.log(recipeArr);
-  } else {
-    console.log("nope");
-  }
-});
-
 // Random recipe generation
 async function randomRecipe() {
   let recipeDetails = {};
   const currentDate = currentDate();
-  if (currentDate === database.date) {
+  let databaseDate;
+  onValue(randomRecipeInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      const recipeArr = Object.entries(snapshot.val());
+      databaseDate = recipeArr[1][0];
+      databaseDetails = recipeArr[1][1];
+    }
+  });
+  if (currentDate === databaseDate) {
+    recipeDetails = databaseDetails;
   } else {
     const response = await fetch(
-      "https://api.spoonacular.com/recipes/random?number=1&apiKey=${APIKEY}"
+      "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
     );
     const details = await response.json();
     recipeDetails = recipeObject(details);
@@ -95,4 +95,4 @@ function currentDate() {
   ).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
 }
 
-// randomRecipe();
+randomRecipe();
