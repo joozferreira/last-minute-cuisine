@@ -18,7 +18,7 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
-onValue(randomRecipeInDB, function (snapshot) {
+onValue(randomRecipe, function (snapshot) {
   console.log(snapshot);
 });
 
