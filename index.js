@@ -20,7 +20,8 @@ const randomRecipeInDB = ref(database, "randomRecipe");
 
 onValue(randomRecipeInDB, function (snapshot) {
   if (snapshot.exists()) {
-    console.log(snapshot);
+    const recipeArr = Object.entries(snapshot.val());
+    console.log(recipeArr);
   } else {
     console.log("nope");
   }
