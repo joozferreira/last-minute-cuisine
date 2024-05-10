@@ -19,12 +19,9 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
-const itemToPush = {
-  date: "19000101",
-  randomRecipeDetails: {},
-};
-
-push(randomRecipeInDB, itemToPush);
+onValue(randomRecipeInDB, function(snapshot)) {
+  console.log(snapshot)
+}
 
 // Random recipe generation
 async function randomRecipe() {
