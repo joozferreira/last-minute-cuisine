@@ -3,7 +3,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/fireba
 import {
   getDatabase,
   ref,
-  push,
   onValue,
   update,
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
@@ -19,9 +18,9 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
-onValue(randomRecipeInDB, function(snapshot)) {
+onValue(randomRecipeInDB, function(snapshot) {
   console.log(snapshot)
-}
+};
 
 // Random recipe generation
 async function randomRecipe() {
