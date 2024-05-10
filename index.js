@@ -1,11 +1,11 @@
 // Creation of database to store daily random recipe
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {
   getDatabase,
   ref,
   onValue,
   update,
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 // Initialization of DB
 
@@ -18,19 +18,19 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
-onValue(randomRecipe, function (snapshot) {
-  console.log(snapshot);
+onValue(randomRecipeInDB, function (snapshot) {
+  if (snapshot.exists()) {
+    console.log(snapshot);
+  } else {
+    console.log("nope");
+  }
 });
 
 // Random recipe generation
 async function randomRecipe() {
   let recipeDetails = {};
-  if (
-    `${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(
-      2,
-      "0"
-    )}${String(new Date().getDate()).padStart(2, "0")}` === database.date
-  ) {
+  const currentDate = currentDate();
+  if (currentDate === database.date) {
   } else {
     const response = await fetch(
       "https://api.spoonacular.com/recipes/random?number=1&apiKey=${APIKEY}"
@@ -86,6 +86,12 @@ function createRecipeCard(recipe, location) {
       document.getElementsByClassName("random-recipe")[0].appendChild(clone);
     }
   }
+}
+
+function currentDate() {
+  return `${new Date().getFullYear()}${String(
+    new Date().getMonth() + 1
+  ).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
 }
 
 // randomRecipe();
