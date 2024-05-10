@@ -1,46 +1,64 @@
-/*
-Logic:
+// Creation of database to store daily random recipe
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  push,
+  onValue,
+  update,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
-1. Run query with ingredients (https://api.spoonacular.com/recipes/findByIngredients?ingredients=spaghetti,+cheese,+mushrooms)
-2. For result, filter the ones with 0 to max missing ingredients
-3. For each result, query readyInMinutes and filter by those smaller than defined by user using
-https://api.spoonacular.com/recipes/716429/information?includeNutrition=false&addWinePairing=false&addTasteData=false
-4. Once filtered, a card can be built and presented to user
-5. For each recipe opened, run https://api.spoonacular.com/recipes/{id}/analyzedInstructions
-*/
+// Initialization of DB
 
-/* Logic 2:
-Store criteria from user in an object and retrieve recipes for the current query.
-Return results in a modal window.
-*/
+const appSettings = {
+  databaseURL:
+    "https://lastminutecuisine-default-rtdb.europe-west1.firebasedatabase.app/",
+};
 
-// async function getRecipes() {
-//   const response = await fetch(
-//     "https://api.spoonacular.com/recipes/1182871/analyzedInstructions?apiKey=054a77294b57404ebabaf53116dd17b1"
-//   );
-//   const instructions = await response.json();
-//   console.log(instructions);
-// }
+const app = initializeApp(appSettings);
+const database = getDatabase(app);
+const randomRecipeInDB = ref(database, "randomRecipe");
 
-// getRecipes();
+const itemToPush = {
+  date: "19000101",
+  randomRecipeDetails: {},
+};
 
+push(randomRecipeInDB, itemToPush);
+
+// Random recipe generation
 async function randomRecipe() {
-  const response = await fetch(
-    "https://api.spoonacular.com/recipes/random?number=1&apiKey=${APIKEY}"
-  );
-  const details = await response.json();
-
-  const recipeDetails = {
-    title: details.recipes[0].title,
-    timeToCook: details.recipes[0].readyInMinutes,
-    image: details.recipes[0].image,
-    ingredientsList: details.recipes[0].extendedIngredients,
-    stepsList: details.recipes[0].analyzedInstructions[0].steps,
-  };
+  let recipeDetails = {};
+  if (
+    `${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(
+      2,
+      "0"
+    )}${String(new Date().getDate()).padStart(2, "0")}` === database.date
+  ) {
+  } else {
+    const response = await fetch(
+      "https://api.spoonacular.com/recipes/random?number=1&apiKey=${APIKEY}"
+    );
+    const details = await response.json();
+    recipeDetails = recipeObject(details);
+  }
 
   createRecipeCard(recipeDetails, "random");
 }
 
+// Creation of recipe object
+function recipeObject(input) {
+  return {
+    title: input.recipes[0].title,
+    timeToCook: input.recipes[0].readyInMinutes,
+    image: input.recipes[0].image,
+    ingredientsList: input.recipes[0].extendedIngredients,
+    stepsList: input.recipes[0].analyzedInstructions[0].steps,
+    type: input.recipes[0].dishTypes,
+  };
+}
+
+// Creation of recipe cards to be presented in the browser
 function createRecipeCard(recipe, location) {
   if ("content" in document.createElement("template")) {
     const template = document.getElementById("recipe-template");
@@ -74,4 +92,4 @@ function createRecipeCard(recipe, location) {
   }
 }
 
-randomRecipe();
+// randomRecipe();
