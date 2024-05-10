@@ -109,7 +109,7 @@ main {
   padding: 1em;
   border-radius: 10px;
   background-color: #fff;
-  flex-grow: 1;
+  flex: 1 0 20rem;
   max-width: 700px;
 }
 
