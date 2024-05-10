@@ -23,11 +23,13 @@ async function randomRecipe() {
   let recipeDetails = {};
   const currentDate = currentDate();
   let databaseDate;
+  let databaseLocation;
   onValue(randomRecipeInDB, function (snapshot) {
     if (snapshot.exists()) {
       const recipeArr = Object.entries(snapshot.val());
       databaseDate = recipeArr[1][0];
       databaseDetails = recipeArr[1][1];
+      databaseLocation = recipeArr[0][0];
     }
   });
   if (currentDate === databaseDate) {
@@ -38,6 +40,8 @@ async function randomRecipe() {
     );
     const details = await response.json();
     recipeDetails = recipeObject(details);
+    currentRandomRecipe = [currentDate, recipeDetails];
+    update(ref(database, `randomRecipe`), currentRandomRecipe);
   }
 
   createRecipeCard(recipeDetails, "random");
