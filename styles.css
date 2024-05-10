@@ -109,16 +109,21 @@ main {
   padding: 1em;
   border-radius: 10px;
   background-color: #fff;
-  width: 320px;
+  flex-grow: 1;
+  max-width: 700px;
 }
 
 .header {
   color: #242124;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .clock {
   height: 1.5rem;
+  margin-right: 1rem;
 }
 
 .random-recipe h2 {
