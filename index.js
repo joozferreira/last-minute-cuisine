@@ -53,6 +53,7 @@ async function getRandomRecipe() {
     "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
   );
   const details = await response.json();
+  console.log(details);
   return details;
 }
 
