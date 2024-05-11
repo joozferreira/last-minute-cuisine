@@ -27,23 +27,26 @@ function randomRecipe() {
       const recipeArr = Object.entries(snapshot.val());
       console.log(recipeArr);
 
-      //     if (currentDate === recipeArr[1][0]) {
-      //       recipeDetails = recipeArr[1][1];
-      //     } else {
-      //       async function fetchRecipe() {
-      //         const response = await fetch(
-      //           "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
-      //         );
-      //         const details = await response.json();
-      //         recipeDetails = recipeObject(details);
-      //         currentRandomRecipe = [currentDate, recipeDetails];
-      //         update(ref(database, `randomRecipe`), currentRandomRecipe);
-      //       }
-      //       fetchRecipe();
-      //     }
+      if (currentDate === recipeArr[0][1][0]) {
+        recipeDetails = recipeArr[0][1][1];
+      } else {
+        async function fetchRecipe() {
+          const response = await fetch(
+            "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
+          );
+          const details = await response.json();
+          recipeDetails = recipeObject(details);
+          currentRandomRecipe = [currentDate, recipeDetails];
+          update(
+            ref(database, `randomRecipe/${recipeArr[0][0]}`),
+            currentRandomRecipe
+          );
+        }
+        fetchRecipe();
+      }
     }
   });
-  // createRecipeCard(recipeDetails, "random");
+  createRecipeCard(recipeDetails, "random");
 }
 
 // Creation of recipe object
