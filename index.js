@@ -21,7 +21,7 @@ const randomRecipeInDB = ref(database, "randomRecipe");
 // Random recipe generation
 async function randomRecipe() {
   let recipeDetails = {};
-  const currentDate = currentDate();
+  const currentDate = getCurrentDateString();
   let databaseDate;
   let databaseLocation;
   onValue(randomRecipeInDB, function (snapshot) {
@@ -93,7 +93,7 @@ function createRecipeCard(recipe, location) {
   }
 }
 
-function currentDate() {
+function getCurrentDateString() {
   return `${new Date().getFullYear()}${String(
     new Date().getMonth() + 1
   ).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
