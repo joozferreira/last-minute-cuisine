@@ -30,7 +30,8 @@ function randomRecipe() {
       if (currentDate === recipeArr[0][1][0]) {
         recipeDetails = recipeArr[0][1][1];
       } else {
-        recipeDetails = recipeObject(getRandomRecipe());
+        const randomRecipe = getRandomRecipe();
+        recipeDetails = recipeObject(randomRecipe);
         const currentRandomRecipe = [currentDate, recipeDetails];
         update(
           ref(database, `randomRecipe/${recipeArr[0][0]}`),
