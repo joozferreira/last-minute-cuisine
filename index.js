@@ -19,31 +19,29 @@ const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
 // Random recipe generation
-async function randomRecipe() {
+function randomRecipe() {
   let recipeDetails = {};
   const currentDate = getCurrentDateString();
-  let databaseDate;
-  let databaseLocation;
   onValue(randomRecipeInDB, function (snapshot) {
     if (snapshot.exists()) {
       const recipeArr = Object.entries(snapshot.val());
-      databaseDate = recipeArr[1][0];
-      databaseDetails = recipeArr[1][1];
-      databaseLocation = recipeArr[0][0];
+
+      if (currentDate === recipeArr[1][0]) {
+        recipeDetails = recipeArr[1][1];
+      } else {
+        async function fetchRecipe() {
+          const response = await fetch(
+            "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
+          );
+          const details = await response.json();
+          recipeDetails = recipeObject(details);
+          currentRandomRecipe = [currentDate, recipeDetails];
+          update(ref(database, `randomRecipe`), currentRandomRecipe);
+        }
+        fetchRecipe();
+      }
     }
   });
-  if (currentDate === databaseDate) {
-    recipeDetails = databaseDetails;
-  } else {
-    const response = await fetch(
-      "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
-    );
-    const details = await response.json();
-    recipeDetails = recipeObject(details);
-    currentRandomRecipe = [currentDate, recipeDetails];
-    update(ref(database, `randomRecipe`), currentRandomRecipe);
-  }
-
   createRecipeCard(recipeDetails, "random");
 }
 
