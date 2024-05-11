@@ -31,15 +31,16 @@ function randomRecipe() {
         recipeDetails = recipeArr[0][1][1];
       } else {
         const randomRecipe = getRandomRecipe();
-        recipeDetails = recipeObject(randomRecipe);
-        const currentRandomRecipe = [currentDate, recipeDetails];
-        update(
-          ref(database, `randomRecipe/${recipeArr[0][0]}`),
-          currentRandomRecipe
-        );
+        console.log(randomRecipe);
+        // recipeDetails = recipeObject(randomRecipe);
+        // const currentRandomRecipe = [currentDate, recipeDetails];
+        // update(
+        //   ref(database, `randomRecipe/${recipeArr[0][0]}`),
+        //   currentRandomRecipe
+        // );
       }
     }
-    createRecipeCard(recipeDetails, "random");
+    // createRecipeCard(recipeDetails, "random");
   });
 }
 
@@ -54,7 +55,6 @@ async function getRandomRecipe() {
     "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
   );
   const details = await response.json();
-  console.log(details);
   return details;
 }
 
