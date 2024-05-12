@@ -36,6 +36,7 @@ function randomRecipe() {
           );
           fetchedRecipe = await response.json();
         };
+        console.log(fetchedRecipe);
         recipeDetails = recipeObject(fetchedRecipe);
         const currentRandomRecipe = [currentDate, recipeDetails];
         update(
