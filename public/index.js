@@ -4,6 +4,7 @@ import {
   getDatabase,
   ref,
   onValue,
+  push,
   update,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
@@ -18,30 +19,41 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
+const starter = {
+  date: "19000101",
+  details: {
+    title: "",
+    timeToCook: "",
+    image: "",
+    ingredientsList: "",
+    stepsList: "",
+    type: "",
+  },
+};
+
+push(randomRecipeInDB, starter);
+
 // Random recipe generation
-function randomRecipe() {
+async function randomRecipe() {
   let recipeDetails = {};
   const currentDate = getCurrentDateString();
-  onValue(randomRecipeInDB, function (snapshot) {
+  onValue(randomRecipeInDB, async function (snapshot) {
     if (snapshot.exists()) {
       const recipeArr = Object.entries(snapshot.val());
-
+      console.log(recipeArr[0][0]);
       if (currentDate === recipeArr[0][1][0]) {
         recipeDetails = recipeArr[0][1][1];
       } else {
-        async () => {
-          const response = await fetch(
-            "https://api.spoonacular.com/recipes/random?number=1&apiKey=${APIKEY}"
-          );
-          const fetchedRecipe = await response.json();
-          console.log(fetchedRecipe);
-          recipeDetails = recipeObject(fetchedRecipe);
-          const currentRandomRecipe = [currentDate, recipeDetails];
-          update(
-            ref(database, `randomRecipe/${recipeArr[0][0]}`),
-            currentRandomRecipe
-          );
+        const fetchedDetails = await fetchAndStoreRandomRecipe();
+        recipeDetails = recipeObject(fetchedDetails);
+        const currentRandomRecipe = {
+          date: currentDate,
+          details: recipeDetails,
         };
+        // update(
+        //   ref(database, `randomRecipe/${recipeArr[0][0]}`),
+        //   currentRandomRecipe
+        // );
       }
     }
     createRecipeCard(recipeDetails, "random");
@@ -52,6 +64,14 @@ function getCurrentDateString() {
   return `${new Date().getFullYear()}${String(
     new Date().getMonth() + 1
   ).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
+}
+
+async function fetchAndStoreRandomRecipe() {
+  const response = await fetch(
+    `https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`
+  );
+  const fetchedRecipe = await response.json();
+  return fetchedRecipe;
 }
 
 // Creation of recipe object
@@ -100,4 +120,4 @@ function createRecipeCard(recipe, location) {
   }
 }
 
-randomRecipe();
+// randomRecipe();
