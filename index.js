@@ -30,17 +30,23 @@ function randomRecipe() {
       if (currentDate === recipeArr[0][1][0]) {
         recipeDetails = recipeArr[0][1][1];
       } else {
-        const randomRecipe = getRandomRecipe();
+        const randomRecipe = async () => {
+          const response = await fetch(
+            "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
+          );
+          const details = await response.json();
+          return details;
+        };
         console.log(randomRecipe);
-        // recipeDetails = recipeObject(randomRecipe);
-        // const currentRandomRecipe = [currentDate, recipeDetails];
-        // update(
-        //   ref(database, `randomRecipe/${recipeArr[0][0]}`),
-        //   currentRandomRecipe
-        // );
+        recipeDetails = recipeObject(randomRecipe);
+        const currentRandomRecipe = [currentDate, recipeDetails];
+        update(
+          ref(database, `randomRecipe/${recipeArr[0][0]}`),
+          currentRandomRecipe
+        );
       }
     }
-    // createRecipeCard(recipeDetails, "random");
+    createRecipeCard(recipeDetails, "random");
   });
 }
 
@@ -48,14 +54,6 @@ function getCurrentDateString() {
   return `${new Date().getFullYear()}${String(
     new Date().getMonth() + 1
   ).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
-}
-
-async function getRandomRecipe() {
-  const response = await fetch(
-    "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
-  );
-  const details = await response.json();
-  return details;
 }
 
 // Creation of recipe object
