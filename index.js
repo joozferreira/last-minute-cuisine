@@ -29,20 +29,19 @@ function randomRecipe() {
       if (currentDate === recipeArr[0][1][0]) {
         recipeDetails = recipeArr[0][1][1];
       } else {
-        let fetchedRecipe;
         async () => {
           const response = await fetch(
             "https://api.spoonacular.com/recipes/random?number=1&apiKey=50ffc78cf7d8442ea9e991b940d17c6c"
           );
-          fetchedRecipe = await response.json();
+          const fetchedRecipe = await response.json();
+          console.log(fetchedRecipe);
+          recipeDetails = recipeObject(fetchedRecipe);
+          const currentRandomRecipe = [currentDate, recipeDetails];
+          update(
+            ref(database, `randomRecipe/${recipeArr[0][0]}`),
+            currentRandomRecipe
+          );
         };
-        console.log(fetchedRecipe);
-        recipeDetails = recipeObject(fetchedRecipe);
-        const currentRandomRecipe = [currentDate, recipeDetails];
-        update(
-          ref(database, `randomRecipe/${recipeArr[0][0]}`),
-          currentRandomRecipe
-        );
       }
     }
     createRecipeCard(recipeDetails, "random");
