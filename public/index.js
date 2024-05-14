@@ -1,3 +1,5 @@
+"use strict";
+
 // Creation of database to store daily random recipe
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {
@@ -43,7 +45,7 @@ async function randomRecipe() {
     const recipeArr = Object.entries(snapshot.val());
 
     // No update to the random recipe if current date matches the date in the DB
-    if (currentDate == recipeArr[0][1].date) {
+    if (currentDate === recipeArr[0][1].date) {
       recipeDetails = recipeArr[0][1].details;
     } else {
       const fetchedDetails = await fetchAndStoreRandomRecipe();
