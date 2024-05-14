@@ -3,8 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 import {
   getDatabase,
   ref,
-  onValue,
-  push,
+  get,
   update,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
@@ -37,27 +36,29 @@ const randomRecipeInDB = ref(database, "randomRecipe");
 async function randomRecipe() {
   let recipeDetails = {};
   const currentDate = getCurrentDateString();
-  onValue(randomRecipeInDB, async function (snapshot) {
-    if (snapshot.exists()) {
-      const recipeArr = Object.entries(snapshot.val());
 
-      if (currentDate == recipeArr[0][1].date) {
-        recipeDetails = recipeArr[0][1].details;
-      } else {
-        const fetchedDetails = await fetchAndStoreRandomRecipe();
-        recipeDetails = recipeObject(fetchedDetails);
-        const currentRandomRecipe = {
-          date: currentDate,
-          details: recipeDetails,
-        };
-        update(
-          ref(database, `randomRecipe/${recipeArr[0][0]}`),
-          currentRandomRecipe
-        );
-      }
+  const snapshot = await get(randomRecipeInDB);
+
+  if (snapshot.exists()) {
+    const recipeArr = Object.entries(snapshot.val());
+
+    // No update to the random recipe if current date matches the date in the DB
+    if (currentDate == recipeArr[0][1].date) {
+      recipeDetails = recipeArr[0][1].details;
+    } else {
+      const fetchedDetails = await fetchAndStoreRandomRecipe();
+      recipeDetails = recipeObject(fetchedDetails);
+      const currentRandomRecipe = {
+        date: currentDate,
+        details: recipeDetails,
+      };
+      update(
+        ref(database, `randomRecipe/${recipeArr[0][0]}`),
+        currentRandomRecipe
+      );
     }
-    createRecipeCard(recipeDetails, "random");
-  });
+  }
+  createRecipeCard(recipeDetails, "random");
 }
 
 function getCurrentDateString() {
