@@ -44,10 +44,11 @@ async function randomRecipe() {
   if (snapshot.exists()) {
     const recipeArr = Object.entries(snapshot.val());
 
-    // No update to the random recipe if current date matches the date in the DB
     if (currentDate === recipeArr[0][1].date) {
+      // No update to the random recipe if current date matches the date in the DB
       recipeDetails = recipeArr[0][1].details;
     } else {
+      // Case where recipe in the DB is in the past
       const fetchedDetails = await fetchAndStoreRandomRecipe();
       recipeDetails = recipeObject(fetchedDetails);
       const currentRandomRecipe = {
@@ -59,6 +60,15 @@ async function randomRecipe() {
         currentRandomRecipe
       );
     }
+  } else {
+    // Case where nothing exists in DB
+    const fetchedDetails = await fetchAndStoreRandomRecipe();
+    recipeDetails = recipeObject(fetchedDetails);
+    const currentRandomRecipe = {
+      date: currentDate,
+      details: recipeDetails,
+    };
+    push(randomRecipeInDB, currentRandomRecipe);
   }
   createRecipeCard(recipeDetails, "random");
 }
