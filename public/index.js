@@ -19,19 +19,19 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
 
-const starter = {
-  date: "19000101",
-  details: {
-    title: "",
-    timeToCook: "",
-    image: "",
-    ingredientsList: "",
-    stepsList: "",
-    type: "",
-  },
-};
+// const starter = {
+//   date: "19000101",
+//   details: {
+//     title: "",
+//     timeToCook: "",
+//     image: "",
+//     ingredientsList: "",
+//     stepsList: "",
+//     type: "",
+//   },
+// };
 
-push(randomRecipeInDB, starter);
+// push(randomRecipeInDB, starter);
 
 // Random recipe generation
 async function randomRecipe() {
@@ -40,9 +40,9 @@ async function randomRecipe() {
   onValue(randomRecipeInDB, async function (snapshot) {
     if (snapshot.exists()) {
       const recipeArr = Object.entries(snapshot.val());
-      console.log(recipeArr[0][0]);
-      if (currentDate === recipeArr[0][1][0]) {
-        recipeDetails = recipeArr[0][1][1];
+
+      if (currentDate == recipeArr[0][1].date) {
+        recipeDetails = recipeArr[0][1].details;
       } else {
         const fetchedDetails = await fetchAndStoreRandomRecipe();
         recipeDetails = recipeObject(fetchedDetails);
@@ -50,10 +50,10 @@ async function randomRecipe() {
           date: currentDate,
           details: recipeDetails,
         };
-        // update(
-        //   ref(database, `randomRecipe/${recipeArr[0][0]}`),
-        //   currentRandomRecipe
-        // );
+        update(
+          ref(database, `randomRecipe/${recipeArr[0][0]}`),
+          currentRandomRecipe
+        );
       }
     }
     createRecipeCard(recipeDetails, "random");
@@ -68,7 +68,7 @@ function getCurrentDateString() {
 
 async function fetchAndStoreRandomRecipe() {
   const response = await fetch(
-    `https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`
+    `https://api.spoonacular.com/recipes/random?apiKey=${APIKEY}&number=1`
   );
   const fetchedRecipe = await response.json();
   return fetchedRecipe;
@@ -120,4 +120,4 @@ function createRecipeCard(recipe, location) {
   }
 }
 
-// randomRecipe();
+randomRecipe();
