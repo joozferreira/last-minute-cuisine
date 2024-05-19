@@ -57,9 +57,9 @@ _Resources_
 
 _Next Steps_
 
-1. Addition of firebase to control daily random recipe
-2. Form valdidation and API request with form details
-3. Creation of modal for results
+1. Addition of firebase to control daily random recipe - done
+2. Creation of modal for results
+3. Form valdidation and API request with form details
 4. Login to store favourite recipes per user
 5. Add ingredient-based search
 6. Add translate option using API
