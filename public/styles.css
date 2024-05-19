@@ -266,6 +266,31 @@ input[type="radio"] {
 
 #submit-btn,
 #time,
-#ingredients-qtt {
+#ingredients-qtt,
+#type {
   font-family: "Ubuntu", sans-serif;
+}
+
+/* Modal */
+#modal {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  margin: auto;
+  width: 85dvw;
+  height: 85dvh;
+  background-color: #212529;
+  border: 2px red solid;
+  padding: 1.5rem 2rem;
+}
+
+#modal-header img {
+  height: 1.5rem;
+  width: auto;
+  filter: invert(100%) sepia(0%) saturate(5232%) hue-rotate(337deg)
+    brightness(132%) contrast(91%);
+  vertical-align: middle;
+  margin-left: 0.5rem;
 }
