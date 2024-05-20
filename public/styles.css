@@ -283,7 +283,7 @@ input[type="radio"] {
   width: 85dvw;
   height: 80dvh;
   background-color: #212529;
-  border: 2px #5c545c solid;
+  border: 5px #5c545c solid;
   border-radius: 10px;
   padding: 1.5rem 2rem;
 }
