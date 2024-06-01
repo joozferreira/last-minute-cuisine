@@ -6,6 +6,7 @@ import {
   getDatabase,
   ref,
   get,
+  push,
   update,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
@@ -19,20 +20,6 @@ const appSettings = {
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const randomRecipeInDB = ref(database, "randomRecipe");
-
-// const starter = {
-//   date: "19000101",
-//   details: {
-//     title: "",
-//     timeToCook: "",
-//     image: "",
-//     ingredientsList: "",
-//     stepsList: "",
-//     type: "",
-//   },
-// };
-
-// push(randomRecipeInDB, starter);
 
 // Random recipe generation
 async function randomRecipe() {
@@ -81,7 +68,7 @@ function getCurrentDateString() {
 
 async function fetchAndStoreRandomRecipe() {
   const response = await fetch(
-    `https://api.spoonacular.com/recipes/random?apiKey=${APIKEY}&number=1`
+    `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=1`
   );
   const fetchedRecipe = await response.json();
   return fetchedRecipe;
