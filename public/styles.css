@@ -282,6 +282,7 @@ input[type="radio"] {
   margin: auto;
   width: 85dvw;
   height: 80dvh;
+  overflow-y: scroll;
   background-color: #212529;
   border: 5px #5c545c solid;
   border-radius: 10px;
@@ -317,4 +318,13 @@ input[type="radio"] {
 #modal-results {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 6fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.test {
+  width: 300px;
+  height: 400px;
+  border: 1px solid red;
+  border-radius: 1rem;
 }
